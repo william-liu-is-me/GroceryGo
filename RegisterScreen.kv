@@ -1,0 +1,71 @@
+<RegisterScreen>
+    name:'RegisterScreen'
+    new_user : new_user
+    new_passw : new_passw
+    confirm_new_passw : confirm_new_passw
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 187/255,205/255,197/255,1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        GridLayout:
+            cols: 1
+            pos_hint:{'y':0.15,'right':1}
+            Image:
+                source:'icon_px32/busket.png'
+                
+        
+        GridLayout:
+            cols:1
+            size_hint:0.5,0.5
+            pos_hint: {'top':0.75,'right':0.75}
+            TextInput:
+                font_size:25
+                id: new_user
+                hint_text : 'New Username'
+                background_color:0,0,0,0
+                multiline: False
+                
+            TextInput:
+                id : new_passw
+                font_size:25
+                hint_text: 'Password'
+                background_color:0,0,0,0
+                multiline: False
+                
+            TextInput:
+                id: confirm_new_passw
+                font_size:25
+                hint_text: 'Password'
+                background_color:0,0,0,0
+                multiline: False
+                
+        GridLayout:
+            cols:2
+            size_hint:1,0.25
+            pos_hint: {'top':0.25,'right':1}
+            LabelButton:
+                canvas.before:
+                    Color:
+                        rgba: (187/255,205/255,197/255,1) if self.state =='normal' else (98/255,42/255,29/255,1)
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                text : '[u]Sign Up![/u]'
+                markup: True
+                color: 61/255,59/255,79/255,1
+                font_size: 25
+                on_press:
+                    self.color= 238/255,222/255,176/255,1
+                on_release:
+                    self.parent.parent.parent.test()
+                    self.color= 61/255,59/255,79/255,1
+                    app.root.current = 'LoginScreen' if root.add_new_account() else 'RegisterScreen'
+                    root.manager.transition.direction = 'left'
+            ImageButton:
+                source:'icon_px32/cancel.png'
+                on_release:   
+                    app.root.current = 'LoginScreen'
+                    root.manager.transition.direction = 'left' 

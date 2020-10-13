@@ -1,0 +1,90 @@
+
+<MainScreen>
+    name: 'MainScreen'
+    FloatLayout:
+        size_hint: 1,1
+        pos_hint:{'top':1,'right':1}
+        canvas:
+            Color:
+                rgba: 234/255,205/255,118/255,1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        GridLayout:
+            rows:1
+            pos_hint:{'top':1,'right':1}
+            size_hint:1,0.25
+            
+            ImageButton:
+                id : ImageButton1
+                source:'icon_px32/girl.png'
+                pos:self.pos
+                on_release:
+                    app.stop() #app.root///not self.root
+            
+            BoxLayout:
+                orientation:'vertical'
+                
+                Label:
+                    id: test
+                    text: 'test'
+                    color: 66/255,76/255,80/255,1
+                    font_size: 25
+                    
+
+                    
+                Label:
+                    text: 'somefunction' #function here to determine which habit this is 
+                    color: 66/255,76/255,80/255,1
+                    font_size: 25
+                    
+    
+        ScrollView:
+            size_hint_x:1
+            size_hint_y:0.5
+            pos_hint:{'top':0.75,'left':1}
+            GridLayout:
+                id:ScrollView
+                size_hint_y : None
+                height: self.minimum_height
+                row_default_height : '80dp'
+                row_force_default: True
+                #if you want to scroll horizontally: rows:1,size_hint_x:None, width:self.minimum_width,col_default_width: '100dp',cols_force_default:True
+                cols : 3
+
+                canvas:
+                    Color:
+                        rgba:237/255,209/255,216/255,1 #change color later
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+            
+        GridLayout:
+            size_hint:1,0.25
+            pos_hint:{'top':0.25,'right':1}
+            cols:3
+            ImageButton:
+                source:'icon_px32/addevent.png'
+                on_release:
+                    self.parent.parent.parent.config_dropdown()
+                    app.root.current = 'AddEventScreen'
+                    root.manager.transition.direction = 'up'
+
+            ImageButton:
+                source:'icon_px32/friend.png'
+                on_release:
+                    app.root.ids['MainScreen'].refresh_friend_list()   
+                    app.root.current = 'FriendListScreen'
+
+            ImageButton:
+                source:'icon_px32/settings.png'
+                on_release:   
+                    app.root.current = 'SettingsScreen' 
+                    root.manager.transition.direction = 'left'
+<Special_ImageButton>:
+    background_color : 0,0,0,0
+    on_release:
+
+        app.root.FriendGroceryBanner(self.text)
+        app.root.current = 'FriendEventScreen'
+        

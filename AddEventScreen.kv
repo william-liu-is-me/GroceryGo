@@ -1,0 +1,148 @@
+<AddEventScreen>:
+    
+    name: 'AddEventScreen'
+    id:AddEventScreen
+    canvas.before:
+        Color:
+            rgba : 237/255,209/255,216/255,1
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    
+    GridLayout:
+        id:desti2
+        cols:2
+        size_hint:1,0.4
+        pos_hint:{'top':1,'x':0}
+        
+        
+    GridLayout:
+        cols:2
+        size_hint:1,0.4
+        pos_hint:{'top':0.6,'x':0}
+        TextInput:
+            id:comment
+            background_color:0,0,0,0
+            hint_text: 'Make some comments!'
+            multiline:True
+            font_size:20
+            
+        TextInput:
+            id:volumn
+            on_text:
+                self.background_color= (0,0,0,0)
+            background_color: (0,0,0,0)
+            hint_text: 'Volumn Purchased'
+            multiline:False
+            font_size:20
+            
+
+    GridLayout:
+        cols:2
+        size_hint:1,0.2
+        pos_hint:{'y':0}
+        ImageButton:
+            source:
+                'icon_px32/upload.png'
+            on_release:
+                self.parent.parent.trytheprint(volumn.text, comment.text, desti2.children[0].source,desti2.children[1].source)
+                
+        ImageButton:
+            source:
+                'icon_px32/return.png'
+            on_release:
+                app.root.current = 'MainScreen'
+                root.manager.transition.direction = 'down'
+
+
+
+<MyDropDown>:
+    ImageButton:
+        source:'icon_px32/weight.png'
+        text: 'Weight'
+        size_hint_y: None
+        height: 44
+        on_release: 
+            root.select(self.source)
+            
+    ImageButton:
+        source: 'icon_px32/price.png'
+        size_hint_y: None
+        text : 'Price'
+        height: 44
+        on_release: 
+            root.select(self.source)
+            
+
+
+<MyDropDown2>:
+    ImageButton:
+        source:'icon_px32/meat.png'
+        text: 'meat'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+            
+    ImageButton:
+        source:'icon_px32/fish.png'
+        text: 'fish'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+            
+    ImageButton:
+        source:'icon_px32/vege2.png'
+        text: 'vege2'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+            
+    ImageButton:
+        source:'icon_px32/squid.png'
+        text: 'squid'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+    
+    ImageButton:
+        source:'icon_px32/bread.png'
+        text: 'bread'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+
+    ImageButton:
+        source:'icon_px32/crab.png'
+        text: 'crab'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+
+    ImageButton:
+        source:'icon_px32/vege.png'
+        text: 'vege'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+
+    ImageButton:
+        source:'icon_px32/pizza.png'
+        text: 'pizza'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)
+    ImageButton:
+        source:'icon_px32/candy.png'
+        text: 'candy'
+        size_hint_y: None
+        height: 30
+        on_release: 
+            root.select(self.source)

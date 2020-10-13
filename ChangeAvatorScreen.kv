@@ -1,0 +1,40 @@
+<ChangeAvatorScreen>:
+    name:'ChangeAvatorScreen'
+    canvas:
+        Color:
+            rgba : 161/255,175/255,201/255,1
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    FloatLayout:
+        GridLayout:
+            canvas:
+                Color:
+                    rgba : 187/255,205/255,197/255,1
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+            size_hint:1,0.25
+            pos_hint:{'top':1,'right':1}
+            cols: 1
+            
+            ImageButton:
+                id:avator
+                source:
+                    #app.root.ids['MainScreen'].ids['ImageButton1'].source
+                on_release:
+                    app.root.current = 'SettingsScreen'
+                    root.manager.transition.direction = 'up'
+            
+        ScrollView:
+            size_hint_x:1
+            size_hint_y:0.75
+            pos_hint:{'top':0.75,'left':1}
+            GridLayout:
+                id:ScrollViewChangeAvator
+                size_hint_y : None
+                height: self.minimum_height
+                row_default_height : '80dp'
+                row_force_default: True
+                cols : 3
+                

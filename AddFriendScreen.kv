@@ -1,0 +1,51 @@
+<AddFriendScreen>:
+    friend_id:friend_id
+    name:'AddFriendScreen'
+    canvas.before:
+        Color:
+            rgba : 176/255,164/255,227/255,1
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    GridLayout:                    
+        cols : 1
+        size_hint : 0.5,0.3
+        pos_hint: {'top':1,'right':0.75}
+        ImageButton:
+            source:'icon_px32/uparrow.png'
+            on_release:
+                app.root.current = 'SettingsScreen'
+                root.manager.transition.direction = 'down'
+    GridLayout:
+        cols : 1
+        size_hint : 0.5,0.4
+        pos_hint: {'top':0.7,'right':0.75}
+
+        TextInput:
+            id:friend_id
+            hint_text:'Friend ID:Username'
+            font_size: 25
+            
+            background_color:0,0,0,0
+            multiline: False
+
+        LabelButton:
+            canvas.before:
+                Color:
+                    rgba: (176/255,164/255,227/255,1) if self.state =='normal' else (98/255,42/255,29/255,1)
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+            text : '[u]Submit![/u]'
+            markup: True
+            color: (61/255,59/255,79/255,1)
+            font_size: 25
+            on_press:
+                self.color= (238/255,222/255,176/255,1)
+            on_release:
+                self.color = (61/255,59/255,79/255,1)
+                
+                app.root.ids['AddFriendScreen'].add_friend()
+                friend_id.text =''
+               
+    

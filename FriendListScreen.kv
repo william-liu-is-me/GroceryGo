@@ -1,0 +1,61 @@
+<FriendListScreen>:
+    name : 'FriendListScreen'
+    Label:
+        text: 'FriendListScreen'
+    FloatLayout:
+        size_hint: 1,1
+        pos_hint:{'top':1,'right':1}
+        canvas.before:
+            Color:
+                rgba: 234/255,205/255,118/255,1
+            Rectangle:
+                pos:self.pos
+                size:self.size
+        GridLayout:
+            rows:1
+            pos_hint:{'top':1,'right':1}
+            size_hint:1,0.25
+            
+            ImageButton:
+                id : ImageButton1
+                source:'icon_px32/girl.png'
+                pos:self.pos
+                on_release:
+                    app.root.current = 'MainScreen'
+                    #print (app.root.ids['LoginScreen'].ids['user']) #app.root///not self.root
+            
+            BoxLayout:
+                orientation:'vertical'
+                Label:
+                    id: test
+                    text: 'fake'
+                    color: 66/255,76/255,80/255,1
+                    font_size: 25
+                    
+                #Label:
+#                    text: 'Level: 1' #function here: everytime you enter something 
+#                    color: 66/255,76/255,80/255,1
+#                    font_size: 25
+                    
+                Label:
+                    text: 'Habit: Working on this' #function here to determine which habit this is 
+                    color: 66/255,76/255,80/255,1
+                    font_size: 25
+        ScrollView:
+            size_hint_x:1
+            size_hint_y:0.5
+            pos_hint:{'top':0.75,'left':1}
+            GridLayout:
+                id:ScrollView
+                size_hint_y : None
+                height: self.minimum_height
+                row_default_height : '80dp'
+                row_force_default: True
+                cols : 3
+                canvas:
+                    Color:
+                        rgba:237/255,209/255,216/255,1 #change color later
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+

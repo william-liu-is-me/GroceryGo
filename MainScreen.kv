@@ -14,31 +14,31 @@
             rows:1
             pos_hint:{'top':1,'right':1}
             size_hint:1,0.25
-            
+
             ImageButton:
                 id : ImageButton1
                 source:'icon_px32/girl.png'
                 pos:self.pos
                 on_release:
-                    app.stop() #app.root///not self.root
-            
+                    app.stop()
+
             BoxLayout:
                 orientation:'vertical'
-                
+
                 Label:
                     id: test
                     text: 'test'
                     color: 66/255,76/255,80/255,1
                     font_size: 25
-                    
 
-                    
+
+
                 Label:
-                    text: 'somefunction' #function here to determine which habit this is 
+                    text: 'somefunction' #function here to determine which habit this is
                     color: 66/255,76/255,80/255,1
                     font_size: 25
-                    
-    
+
+
         ScrollView:
             size_hint_x:1
             size_hint_y:0.5
@@ -58,7 +58,7 @@
                     Rectangle:
                         pos:self.pos
                         size:self.size
-            
+
         GridLayout:
             size_hint:1,0.25
             pos_hint:{'top':0.25,'right':1}
@@ -73,13 +73,14 @@
             ImageButton:
                 source:'icon_px32/friend.png'
                 on_release:
-                    app.root.ids['MainScreen'].refresh_friend_list()   
+                    app.root.ids['MainScreen'].refresh_friend_list()
+                    
                     app.root.current = 'FriendListScreen'
 
             ImageButton:
                 source:'icon_px32/settings.png'
-                on_release:   
-                    app.root.current = 'SettingsScreen' 
+                on_release:
+                    app.root.current = 'SettingsScreen'
                     root.manager.transition.direction = 'left'
 <Special_ImageButton>:
     background_color : 0,0,0,0
@@ -87,4 +88,3 @@
 
         app.root.FriendGroceryBanner(self.text)
         app.root.current = 'FriendEventScreen'
-        

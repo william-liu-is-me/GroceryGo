@@ -17,10 +17,10 @@
             size_hint:1,0.25
             pos_hint:{'top':1,'right':1}
             cols: 1
-            
+
             ImageButton:
                 source:'icon_px32/squid.png'
-            
+
         GridLayout:
             size_hint:1,0.6
             pos_hint:{'top':.75,'right':1}
@@ -33,12 +33,14 @@
                 markup: True
                 on_press:
                     self.color= 238/255,222/255,176/255,1
-                    
+
                 on_release:
+                    #print('test')
+                    self.parent.parent.parent.create_avator_list()
                     self.color= 61/255,59/255,79/255,1
                     #self.color= 61/255,59/255,79/255,1
                     app.root.current = 'ChangeAvatorScreen'
-                    root.manager.transition.direction = 'down'    
+                    root.manager.transition.direction = 'down'
                 color: 66/255,76/255,80/255,1
                 font_size: 20
             ImageButton:

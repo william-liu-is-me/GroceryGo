@@ -12,23 +12,24 @@ from kivy.uix.button import ButtonBehavior
 from kivy.uix.image import Image
 from popupwindow import *
 import requests
+from kivy.network.urlrequest import UrlRequest
 from kivy.lang import Builder
-from os import walk
+
 from functools import partial
-from firebase import firebase
-import sys
-from kivy.clock import Clock
+#from firebase import firebase
+
 
 class LoginScreen(Screen):
     user = ObjectProperty(None)
     passw = ObjectProperty(None)
     account = ''
-    
+
     def check(self):
         avator = self.parent.ids['MainScreen'].ids['ImageButton1']
         avator_in_settings = self.parent.ids['ChangeAvatorScreen'].ids['avator']
         url = 'https://kivypractice.firebaseio.com/.json'
         result = requests.get(url,timeout= 15)
+
         data = json.loads(result.content.decode())
         #print(data)
         #so here is where we will config the app for each specific account.
@@ -47,11 +48,11 @@ class LoginScreen(Screen):
                 avator_in_settings.source = 'icon_px32/'+image+'.png'
                 loca = self.parent.ids['FriendListScreen'].ids['ImageButton1']
                 loca.source='icon_px32/'+image+'.png'
-                #Clock.schedule_once(App.get_running_app().stop,5)
-                return True   
+                return True
         show_LoginPop()
         return False
-    
+    def test(self):
+        print('success')
     def GetAvator(self,args):
         url = f'https://kivypractice.firebaseio.com/{args}.json'
         try:
@@ -65,38 +66,28 @@ class LoginScreen(Screen):
         #this data is the orignial json dictionary
         target = self.parent.ids['MainScreen'].ids['ScrollView']
         for k,v in data['event'].items():
-            for event,value in v.items():
+            for event,value in v.items():      
                 B0 = BoxLayout()
                 B0.add_widget(ImageButton(source='icon_px32/'+event+'.png'))
                 B0.add_widget(Label(text=str(value['comment']),font_size= 15,
                         color= (66/255,76/255,80/255,1)))
-                target.add_widget(B0)
-                
+                target.add_widget(B0)#
                 B = BoxLayout()
                 B.add_widget(ImageButton(source='icon_px32/'+value['unit']+'.png' ))
                 B.add_widget(Label(text=str(value['volumn']),font_size= 30,
                         color= (66/255,76/255,80/255,1)))
                 target.add_widget(B)
                 B2=BoxLayout()
-                test_button =ImageButton(source = 'icon_px32/like.png')#
-                                        #,on_release=lambda a :print('test')) #亮了
+                test_button =ImageButton(source = 'icon_px32/like.png'
+                                        ,on_release=lambda a :print('test')) #亮了
                 #test_button.bind(on_release=lambda a:print('test'))
                 B2.add_widget(test_button)
                 B2.add_widget(Label(text=str(value['like']),font_size= 30,
                         color= (66/255,76/255,80/255,1)))
                 target.add_widget(B2)
-    #这个要做个异步IO不然就太慢了
-    #好友越多越慢
+
     def FriendBanner(self,data):
         pass
-        #target = self.parent.ids['FriendListScreen'].ids['ScrollView']
-#        for k in data['friend'].keys():
-#            url = f'https://kivypractice.firebaseio.com/'+k+'.json'
-#            result = requests.get(url,timeout= 30)
-#            data1 = json.loads(result.content.decode())
-#            B = BoxLayout()
-#            B.add_widget(ImageButton(source= 'icon_px32/'+data1['avator']+'.png'))
-#            B.add_widget(Label(text = '%s'%k, font_size= 20,color= (66/255,76/255,80/255,1)))
-#            target.add_widget(B)
+
 class ImageButton(ButtonBehavior,Image):
     pass
